@@ -363,12 +363,13 @@ let ledgerData = [
                 tr.onclick = () => openModal(row.id);
                 const color = getColorForAI(row.ai);
                 const label = row.ai > 80 ? 'AI GENERATED' : (row.ai > 1 ? 'EDITED' : 'AUTHENTIC');
+                const filename = row.url.split('/').pop();
 
                 tr.innerHTML = `
                     <td class="px-6 py-4 font-mono text-xs text-[#2B95FF] font-bold group-hover:text-[#02216A]">${row.id}</td>
                     <td class="px-6 py-4"><div class="h-10 w-14 bg-slate-100 rounded overflow-hidden"><img src="${row.url}" class="w-full h-full object-cover opacity-80" onerror="this.src='${getPlaceholderUrl('photo', 'Drive Asset')}'"></div></td>
                     <td class="px-6 py-4"><div class="flex items-center gap-2 text-xs font-mono"><div class="w-16 h-1.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full" style="width: ${row.ai}%; background-color: ${color}"></div></div><span style="color: ${color}" class="font-bold">${row.ai}%</span></div></td>
-                    <td class="px-6 py-4 text-xs text-slate-500">${row.docType}</td>
+                    <td class="px-6 py-4 text-xs text-slate-500">${filename}</td>
                     <td class="px-6 py-4"><span class="px-2.5 py-1 rounded text-[10px] font-bold" style="background-color: ${color}15; color: ${color}; border: 1px solid ${color}30">${label}</span></td>
                 `;
                 tbody.appendChild(tr);
